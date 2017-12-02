@@ -3,6 +3,13 @@
  * @author rjnagel
  */
 public interface MovementPattern {
+	/*
+	 * Ideas for movement patterns:
+	 *  - Classic left-to-right
+	 *  - Horizontal parabola (opening left/right)
+	 *  - Diagonal
+	 *  - etc.
+	 */
 	/**
 	 * (I think that actually, we will want to return a 2D velocity vector, so
 	 * that the enemies do not move too fast. The returned velocity vector would

@@ -7,15 +7,15 @@ public class Enemy extends JPanel {
 	private int x;
 	private int y;
 	
-	private MovementPattern mp;
+	private MovementPattern pattern;
 	private Image image;
 	
 	public Enemy() {
 		;
 	}
 	
-	public void setMovementPattern(MovementPattern mp) {
-		this.mp = mp;
+	public void setMovementPattern(MovementPattern pattern) {
+		this.pattern = pattern;
 	}
 	
 	@Override

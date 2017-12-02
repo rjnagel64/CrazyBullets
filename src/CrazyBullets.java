@@ -4,21 +4,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class CrazyBullets extends JFrame {
-	
+
+	public static int SCREEN_WIDTH = 640;
+	public static int SCREEN_HEIGHT = 480;
+
+	private Ship ship;
+
 	public CrazyBullets() {
-		setSize(640, 480);
+		ship = new Ship();
+		add(ship);
+
+		setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		setTitle("CrazyBullets");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				CrazyBullets cb = new CrazyBullets();
-				cb.setVisible(true);
-			}
+		EventQueue.invokeLater(() -> {
+			CrazyBullets cb = new CrazyBullets();
+			cb.setVisible(true);
 		});
 	}
 
