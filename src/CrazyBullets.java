@@ -1,5 +1,7 @@
 
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
@@ -8,12 +10,9 @@ public class CrazyBullets extends JFrame {
 	public static int SCREEN_WIDTH = 640;
 	public static int SCREEN_HEIGHT = 480;
 
-	private Ship ship;
-
 	public CrazyBullets() {
-		ship = new Ship();
-		add(ship);
-
+		add(new Game());
+		
 		setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		setTitle("CrazyBullets");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,5 +25,4 @@ public class CrazyBullets extends JFrame {
 			cb.setVisible(true);
 		});
 	}
-
 }

@@ -23,8 +23,13 @@ public class Ship extends JPanel {
 		x += delta;
 	}
 	
+	public int getPos() {
+		return x;
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
+		System.out.println("Ship#paintComponent(): x = " + x);
 		// The y-coordinate is the height of the image because the .drawImage()
 		// method puts the top-left corner of the image at (x, y).
 		g.drawImage(image, x, CrazyBullets.SCREEN_HEIGHT - image.getHeight(this) - 20, null);
