@@ -33,6 +33,13 @@ public class Game extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
+		
+		// Each enemy should be updated here.
+		// Enemies must not move every frame -- that's much too fast.
+		// One option would be to keep track of the time since last update here,
+		// and update all enemies together. However, since enemies move in
+		// different ways (and might appear at different times), it might make
+		// more sense for each enemy to store the time when it was last updated.
 	}
 
 	@Override

@@ -1,8 +1,4 @@
-/**
- * An interface representing a pattern that an enemy moves in.
- * @author rjnagel
- */
-public interface MovementPattern {
+public abstract class MovementPattern {
 	/*
 	 * Ideas for movement patterns:
 	 *  - Classic left-to-right
@@ -10,7 +6,7 @@ public interface MovementPattern {
 	 *  - Diagonal
 	 *  - etc.
 	 */
-	/**
+	/*
 	 * (I think that actually, we will want to return a 2D velocity vector, so
 	 * that the enemies do not move too fast. The returned velocity vector would
 	 * be multiplied by the time elapsed since last frame, giving the change in
@@ -21,5 +17,7 @@ public interface MovementPattern {
 	 * So really, this should look more like "Velocity update(float elapsed);",
 	 * where Velocity is just something with x- and y-components.
 	 */
-	void update();
+	abstract void update();
+	abstract int getX();
+	abstract int getY();
 }

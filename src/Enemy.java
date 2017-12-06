@@ -16,6 +16,7 @@ public class Enemy extends JPanel {
 		this.x = x;
 		this.y = y;
 		
+		// TODO: Having multiple types of enemy means not hard-coding what image to use.
 		ImageIcon ii = new ImageIcon("enemy1.png");
 		image = ii.getImage();
 		
@@ -26,11 +27,14 @@ public class Enemy extends JPanel {
 		this.pattern = pattern;
 	}
 	
+	public void update() {
+		
+	}
+	
 	@Override
 	public void paintComponents(Graphics g) {
 		super.paintComponents(g);
 		
 		g.drawImage(image, x, y, null);
 	}
-
 }
