@@ -9,13 +9,15 @@ public class Ship extends JPanel {
 	private Image image;
 	
 	// Since the ship is always at the bottom of the screen, there is no need
-	// to track the y-coordinate.
+	// to track the ship's y-coordinate.
 	private int x;
 	
 	public Ship() {
 		ImageIcon ii = new ImageIcon("ship.png"); 
 		image = ii.getImage();
-		x = 320 - (image.getWidth(null) / 2);
+		
+		x = (CrazyBullets.SCREEN_WIDTH / 2) - (image.getWidth(null) / 2);
+		
 		setPreferredSize(new Dimension(image.getWidth(this), image.getHeight(this)));
 	}
 	
@@ -29,9 +31,11 @@ public class Ship extends JPanel {
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		System.out.println("Ship#paintComponent(): x = " + x);
+		super.paintComponent(g);
 		// The y-coordinate is the height of the image because the .drawImage()
 		// method puts the top-left corner of the image at (x, y).
-		g.drawImage(image, x, CrazyBullets.SCREEN_HEIGHT - image.getHeight(this) - 20, null);
+		// 20 is subtracted from the screen height so as to provide a small
+		// border below the ship.
+		g.drawImage(image, x, (CrazyBullets.SCREEN_HEIGHT - 20) - image.getHeight(this), null);
 	}
 }
