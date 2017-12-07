@@ -10,6 +10,7 @@ public class CrazyBullets extends JFrame {
 	public CrazyBullets() {
 		add(new Game());
 		
+		// Does this include the header at the top of the screen?
 		setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		setTitle("CrazyBullets");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

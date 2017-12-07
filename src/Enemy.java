@@ -6,11 +6,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Enemy extends JPanel {
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
 	
-	private MovementPattern pattern;
-	private Image image;
+	protected Image image;
 	
 	public Enemy(int x, int y) {
 		this.x = x;
@@ -23,12 +22,7 @@ public class Enemy extends JPanel {
 		setPreferredSize(new Dimension(image.getWidth(null), image.getHeight(null)));
 	}
 	
-	public void setMovementPattern(MovementPattern pattern) {
-		this.pattern = pattern;
-	}
-	
 	public void update() {
-		
 	}
 	
 	@Override

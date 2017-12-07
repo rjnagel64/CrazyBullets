@@ -13,12 +13,14 @@ import javax.swing.Timer;
 public class Game extends JPanel implements ActionListener {
 	private static final int MS_PER_FRAME = 32;
 	private static final int MOVE_AMOUNT = 32;
+	private static final int ENEMY_DELAY = 250;
 	private int intBulletX = -32;
 	private int intBulletY = -32;
 	boolean bulletMove = false;
 	boolean bulletActive = false;
 	
-	private Timer timer;
+	private Timer gameTimer;
+	private Timer enemyTimer;
 
 	private Ship ship;
 	private List<Enemy> enemies;
@@ -26,17 +28,26 @@ public class Game extends JPanel implements ActionListener {
 	public Game() {
 		ship = new Ship();
 		enemies = new ArrayList<Enemy>();
-		// TODO: Spawn enemies
+		enemies.add(new ClassicEnemy(144, 70));
 
-		timer = new Timer(MS_PER_FRAME, this);
-		timer.start();
+		gameTimer = new Timer(MS_PER_FRAME, this);
+		gameTimer.start();
+		
+		enemyTimer = new Timer(ENEMY_DELAY, new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				for (Enemy e : enemies) {
+					e.update();
+				}
+			}
+		});
+		enemyTimer.start();
 
 		setFocusable(true);
 		addKeyListener(new KeypressHandler());
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent event) {
 		// here is the action performed for the bullet shot
 		if(bulletMove && bulletActive){
   			intBulletY -= 15;
