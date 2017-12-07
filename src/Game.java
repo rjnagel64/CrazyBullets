@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,10 @@ import javax.swing.Timer;
 public class Game extends JPanel implements ActionListener {
 	private static final int MS_PER_FRAME = 32;
 	private static final int MOVE_AMOUNT = 32;
+	private int intBulletX = -32;
+	private int intBulletY = -32;
+	boolean bulletMove = false;
+	boolean bulletActive = false;
 	
 	private Timer timer;
 
@@ -32,6 +37,14 @@ public class Game extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// here is the action performed for the bullet shot
+		if(bulletMove && bulletActive){
+  			intBulletY -= 15;
+  			if(intBulletY <= -50){
+  				bulletMove = false;
+  				bulletActive = false;
+  			}
+  		}
 		repaint();
 		
 		// Each enemy should be updated here.
@@ -45,6 +58,9 @@ public class Game extends JPanel implements ActionListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		g.setColor(Color.red);
+		g.fillOval(intBulletX, intBulletY, 10, 25);
 
 		ship.paintComponent(g);
 		
@@ -62,8 +78,15 @@ public class Game extends JPanel implements ActionListener {
 				ship.shift(-MOVE_AMOUNT);
 			} else if (key == KeyEvent.VK_RIGHT) {
 				ship.shift(MOVE_AMOUNT);
+			} else if (key == KeyEvent.VK_SPACE) { 
+				if(bulletActive == false){
+	  				intBulletX = (ship.getPos()) + 73;
+	  				intBulletY = ship.getPosY();
+	  			}
+	  			bulletMove = true;
+	  			bulletActive = true;
 			} else {
-				// Ignore all other keypresses.
+				//ignore all other key presses
 			}
 		}
 
