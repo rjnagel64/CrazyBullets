@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -14,6 +15,8 @@ public class Game extends JPanel implements ActionListener {
 	private static final int MS_PER_FRAME = 32;
 	private static final int MOVE_AMOUNT = 32;
 	private static final int ENEMY_DELAY = 250;
+	private static final int SPAWN_DELAY = 2000;
+	protected static final int MAX_ENEMIES = 7;
 	private int intBulletX = -32;
 	private int intBulletY = -32;
 	boolean bulletMove = false;
@@ -21,6 +24,7 @@ public class Game extends JPanel implements ActionListener {
 	
 	private Timer gameTimer;
 	private Timer enemyTimer;
+	private Timer enemySpawnTimer;
 
 	private Ship ship;
 	private List<Enemy> enemies;
@@ -41,6 +45,35 @@ public class Game extends JPanel implements ActionListener {
 			}
 		});
 		enemyTimer.start();
+		
+		enemySpawnTimer = new Timer(SPAWN_DELAY, new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				if (enemies.size() < MAX_ENEMIES) {
+					Random r = new Random();
+					
+					int x = r.nextInt(CrazyBullets.SCREEN_HEIGHT / 4);
+					int y = r.nextInt(CrazyBullets.SCREEN_WIDTH);
+					int type = r.nextInt(3);
+					boolean rightToLeft = r.nextBoolean();
+					
+					switch (type) {
+					case 0:
+						enemies.add(new ClassicEnemy(x, y, rightToLeft));
+						break;
+					case 1:
+						enemies.add(new ParabolaEnemy(x, y, rightToLeft));
+						break;
+					case 2:
+						enemies.add(new DiagonalEnemy(x, type, rightToLeft));
+						break;
+					default:
+						// This should never be reached.
+						break;
+					}
+				}
+			}
+		});
+		enemySpawnTimer.start();
 
 		setFocusable(true);
 		addKeyListener(new KeypressHandler());
@@ -49,21 +82,18 @@ public class Game extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		// here is the action performed for the bullet shot
-		if(bulletMove && bulletActive){
+		if (bulletMove && bulletActive){
   			intBulletY -= 15;
-  			if(intBulletY <= -50){
+  			if (intBulletY <= -50){
   				bulletMove = false;
   				bulletActive = false;
   			}
   		}
-		repaint();
 		
-		// Each enemy should be updated here.
-		// Enemies must not move every frame -- that's much too fast.
-		// One option would be to keep track of the time since last update here,
-		// and update all enemies together. However, since enemies move in
-		// different ways (and might appear at different times), it might make
-		// more sense for each enemy to store the time when it was last updated.
+		// TODO: Check if any enemy has reached the bottom of the screen. If so,
+		// the game has been lost.
+		
+		repaint();
 	}
 
 	@Override
