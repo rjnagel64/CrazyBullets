@@ -8,14 +8,16 @@ import javax.swing.JPanel;
 public class Enemy extends JPanel {
 	protected int x;
 	protected int y;
+	protected boolean rightToLeft;
 	
 	protected Image image;
 	
-	public Enemy(int x, int y) {
+	public Enemy(int x, int y, boolean rightToLeft) {
 		this.x = x;
 		this.y = y;
+		this.rightToLeft = rightToLeft;
 		
-		// TODO: Having multiple types of enemy means not hard-coding what image to use.
+		// TODO: Set this in the subclasses.
 		ImageIcon ii = new ImageIcon("enemy1.png");
 		image = ii.getImage();
 		

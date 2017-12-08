@@ -2,11 +2,9 @@
 public class DiagonalEnemy extends Enemy {
 	private static int xSpeed = 10;
 	private static int ySpeed = 2;
-	private boolean rightToLeft;
 
-	public DiagonalEnemy(int x, int y) {
-		super(x, y);
-		rightToLeft = false;
+	public DiagonalEnemy(int x, int y, boolean rightToLeft) {
+		super(x, y, rightToLeft);
 	}
 	
 	public void update() {

@@ -28,7 +28,7 @@ public class Game extends JPanel implements ActionListener {
 	public Game() {
 		ship = new Ship();
 		enemies = new ArrayList<Enemy>();
-		enemies.add(new DiagonalEnemy(144, 70));
+		enemies.add(new ParabolaEnemy(400, 70, false));
 
 		gameTimer = new Timer(MS_PER_FRAME, this);
 		gameTimer.start();

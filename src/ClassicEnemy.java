@@ -1,11 +1,9 @@
 
 public class ClassicEnemy extends Enemy {
 	private static int speed = 10;
-	private boolean rightToLeft;
 
-	public ClassicEnemy(int x, int y) {
-		super(x, y);
-		rightToLeft = false;
+	public ClassicEnemy(int x, int y, boolean rightToLeft) {
+		super(x, y, rightToLeft);
 	}
 	
 	public void update() {
