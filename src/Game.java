@@ -51,8 +51,8 @@ public class Game extends JPanel implements ActionListener {
 				if (enemies.size() < MAX_ENEMIES) {
 					Random r = new Random();
 					
-					int x = r.nextInt(CrazyBullets.SCREEN_HEIGHT / 4);
-					int y = r.nextInt(CrazyBullets.SCREEN_WIDTH);
+					int x = r.nextInt(CrazyBullets.SCREEN_WIDTH);
+					int y = r.nextInt(CrazyBullets.SCREEN_HEIGHT / 4);
 					int type = r.nextInt(3);
 					boolean rightToLeft = r.nextBoolean();
 					
