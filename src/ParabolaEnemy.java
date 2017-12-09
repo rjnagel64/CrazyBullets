@@ -16,9 +16,8 @@ public class ParabolaEnemy extends Enemy {
 		y += ySpeed;
 		ySpeed++;
 		
-		if (x < 16 || x + image.getWidth(null) > CrazyBullets.SCREEN_WIDTH - 16) {
+		if (x < 0 || x + image.getWidth(null) > CrazyBullets.SCREEN_WIDTH) {
 			rightToLeft = !rightToLeft;
-			y += 20;
 		}
 	}
 
