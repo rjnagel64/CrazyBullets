@@ -8,7 +8,7 @@ public class DiagonalEnemy extends Enemy {
 
 	public DiagonalEnemy(int x, int y, boolean rightToLeft) {
 		super(x, y, rightToLeft);
-		
+
 		ImageIcon ii = new ImageIcon("diagonal_enemy.png");
 		image = ii.getImage();
 		
