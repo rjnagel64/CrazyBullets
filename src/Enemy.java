@@ -16,11 +16,11 @@ public class Enemy extends JPanel {
 		this.x = x;
 		this.y = y;
 		this.rightToLeft = rightToLeft;
-		
+
 		// TODO: Set this in the subclasses.
 		ImageIcon ii = new ImageIcon("enemy1.png");
 		image = ii.getImage();
-		
+
 		setPreferredSize(new Dimension(image.getWidth(null), image.getHeight(null)));
 	}
 	
