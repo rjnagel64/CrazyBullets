@@ -16,9 +16,10 @@ public class Game extends JPanel implements ActionListener {
 	private static final int MOVE_AMOUNT = 32;
 	private static final int ENEMY_DELAY = 250;
 	private static final int SPAWN_DELAY = 2000;
-	protected static final int MAX_ENEMIES = 7;
-	private int intBulletX = -32;
-	private int intBulletY = -32;
+	private static final int MAX_ENEMIES = 7;
+	
+	private int bulletX = -32;
+	private int bulletY = -32;
 	boolean bulletMove = false;
 	boolean bulletActive = false;
 	
@@ -82,8 +83,8 @@ public class Game extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		// here is the action performed for the bullet shot
 		if (bulletMove && bulletActive){
-  			intBulletY -= 15;
-  			if (intBulletY <= -50){
+  			bulletY -= 15;
+  			if (bulletY <= -50){
   				bulletMove = false;
   				bulletActive = false;
   			}
@@ -100,7 +101,7 @@ public class Game extends JPanel implements ActionListener {
 		super.paintComponent(g);
 		
 		g.setColor(Color.red);
-		g.fillOval(intBulletX, intBulletY, 10, 25);
+		g.fillOval(bulletX, bulletY, 10, 25);
 
 		ship.paintComponent(g);
 		
@@ -120,8 +121,8 @@ public class Game extends JPanel implements ActionListener {
 				ship.shift(MOVE_AMOUNT);
 			} else if (key == KeyEvent.VK_SPACE) { 
 				if(bulletActive == false){
-	  				intBulletX = (ship.getPos()) + 73;
-	  				intBulletY = ship.getPosY();
+	  				bulletX = (ship.getPos()) + 73;
+	  				bulletY = ship.getPosY();
 	  			}
 	  			bulletMove = true;
 	  			bulletActive = true;
