@@ -18,6 +18,13 @@ public class Enemy extends JPanel {
 		this.rightToLeft = rightToLeft;
 	}
 	
+	public int getY() {
+		return y;
+	}
+	public int getX() {
+		return x;
+	}
+	
 	public void update() {
 	}
 	

@@ -18,6 +18,7 @@ public class Game extends JPanel implements ActionListener {
 	private static final int SPAWN_DELAY = 2000;
 	private static final int MAX_ENEMIES = 7;
 	
+	private int score = 0;
 	private int bulletX = -32;
 	private int bulletY = -32;
 	boolean bulletMove = false;
@@ -26,6 +27,7 @@ public class Game extends JPanel implements ActionListener {
 	private Timer gameTimer;
 	private Timer enemyTimer;
 	private Timer enemySpawnTimer;
+	private Timer bulletCheck;
 
 	private Ship ship;
 	private List<Enemy> enemies;
@@ -45,6 +47,44 @@ public class Game extends JPanel implements ActionListener {
 			}
 		});
 		enemyTimer.start();
+		
+		// this will check for win/loss/and hit collision
+		// it will also update the score in the top right corner
+		bulletCheck = new Timer(1, new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				
+				int yUpper = bulletY + 5;
+				int yLower = bulletY - 5;
+				int xLeft = bulletX - 100;
+				int xRight = bulletX + 100;
+				for(int i = 0; i < enemies.size(); i++) {
+					int Y = (enemies.get(i)).getY(); 
+					int X = (enemies.get(i)).getX(); 
+					if (Y <= yUpper && Y >= yLower && X <= xRight && X >= xLeft) {
+						enemies.remove(i);
+						score += 100;
+						System.out.println("hit");
+					}
+					
+					if(Y >= 400) {
+						bulletCheck.stop();
+						enemySpawnTimer.stop();
+						gameTimer.stop();
+						enemyTimer.stop();
+						System.out.println("you lose");
+					}
+					
+				}
+				if(score >= 1000) {
+					bulletCheck.stop();
+					enemySpawnTimer.stop();
+					gameTimer.stop();
+					enemyTimer.stop();
+					System.out.println("you win");
+				}
+			}
+		});
+		bulletCheck.start();
 		
 		enemySpawnTimer = new Timer(SPAWN_DELAY, new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -89,6 +129,13 @@ public class Game extends JPanel implements ActionListener {
   				bulletActive = false;
   			}
   		}
+		
+		/*for(int i = 0; i < enemies.size(); i++) {
+			if(bulletY == (enemies.get(i)).getY()  ) {
+				System.out.println("hi");
+				enemies.remove(i);
+			}
+		} */
 		
 		// TODO: Check if any enemy has reached the bottom of the screen. If so,
 		// the game has been lost.

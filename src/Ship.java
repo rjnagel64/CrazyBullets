@@ -9,7 +9,7 @@ public class Ship extends JPanel {
 	private Image image;
 	
 	// Since the ship is always at the bottom of the screen, there is no need
-	// to track the ship's y-coordinate.
+	// to track the ship's y-coordinate. - note to Robert (i use it for bullet pos)
 	private int x;
 	private int y;
 	
