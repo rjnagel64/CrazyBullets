@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -22,8 +24,9 @@ public class Game extends JPanel implements ActionListener {
 	private int score = 0;
 	private int bulletX = -32;
 	private int bulletY = -32;
-	boolean bulletMove = false;
-	boolean bulletActive = false;
+	private boolean bulletMove = false;
+	private boolean bulletActive = false;
+	private Image bulletImage;
 	
 	private Timer gameTimer;
 	private Timer enemyTimer;
@@ -34,6 +37,9 @@ public class Game extends JPanel implements ActionListener {
 	private List<Enemy> enemies;
 	
 	public Game() {
+		ImageIcon ii = new ImageIcon("bullet.png");
+		bulletImage = ii.getImage();
+		
 		ship = new Ship();
 		enemies = new ArrayList<Enemy>();
 		
@@ -148,8 +154,7 @@ public class Game extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.setColor(Color.red);
-		g.fillOval(bulletX, bulletY, 10, 25);
+		g.drawImage(bulletImage, bulletX, bulletY, null);
 
 		ship.paintComponent(g);
 		
