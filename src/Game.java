@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -35,7 +36,7 @@ public class Game extends JPanel implements ActionListener {
 	public Game() {
 		ship = new Ship();
 		enemies = new ArrayList<Enemy>();
-
+		
 		gameTimer = new Timer(MS_PER_FRAME, this);
 		gameTimer.start();
 		
@@ -53,10 +54,10 @@ public class Game extends JPanel implements ActionListener {
 		bulletCheck = new Timer(1, new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				
-				int yUpper = bulletY + 5;
-				int yLower = bulletY - 5;
-				int xLeft = bulletX - 100;
-				int xRight = bulletX + 100;
+				int yUpper = bulletY + 10;
+				int yLower = bulletY - 10;
+				int xLeft = bulletX - 30;
+				int xRight = bulletX + 30;
 				for(int i = 0; i < enemies.size(); i++) {
 					int Y = (enemies.get(i)).getY(); 
 					int X = (enemies.get(i)).getX(); 
