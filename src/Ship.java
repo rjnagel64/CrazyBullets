@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 public class Ship extends JPanel {
 	private Image image;
 	
-	// Since the ship is always at the bottom of the screen, there is no need
-	// to track the ship's y-coordinate. - note to Robert (i use it for bullet pos)
 	private int x;
 	private int y;
 	
@@ -18,6 +16,8 @@ public class Ship extends JPanel {
 		image = ii.getImage();
 		
 		x = (CrazyBullets.SCREEN_WIDTH / 2) - (image.getWidth(null) / 2);
+		// (x, y) is the coordinates of the upper-left corner of the image.
+		// 50 is subtracted to leave some space at the bottom of the screen.
 		y = (CrazyBullets.SCREEN_HEIGHT - 50) - image.getHeight(this);
 		
 		setPreferredSize(new Dimension(image.getWidth(this), image.getHeight(this)));
@@ -37,10 +37,7 @@ public class Ship extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// The y-coordinate is the height of the image because the .drawImage()
-		// method puts the top-left corner of the image at (x, y).
-		// 20 is subtracted from the screen height so as to provide a small
-		// border below the ship.
-		g.drawImage(image, x, (CrazyBullets.SCREEN_HEIGHT - 50) - image.getHeight(this), null);
+
+		g.drawImage(image, x, y, null);
 	}
 }
