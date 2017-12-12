@@ -15,7 +15,7 @@ import javax.swing.Timer;
 
 public class Game extends JPanel implements ActionListener {
 	private static final int POINTS_PER_ENEMY = 100;
-	private static final int POINTS_TO_WIN = 1000;
+	private static final int POINTS_TO_WIN = 500;
 	private static final int MAX_ENEMIES = 7;
 	
 	private static final int MOVE_AMOUNT = 32;
@@ -40,9 +40,14 @@ public class Game extends JPanel implements ActionListener {
 	private Ship ship;
 	private List<Enemy> enemies;
 	
-	JLabel scorecounter = new JLabel("Score: 0");
+	JLabel scoreCounter;
 
 	public Game() {
+		scoreCounter = new JLabel("Score: 0");
+		scoreCounter.setLocation(550, 10);
+		scoreCounter.setSize(100, 50);
+		add(scoreCounter);
+		
 		ImageIcon ii = new ImageIcon("bullet.png");
 		bulletImage = ii.getImage();
 
@@ -90,7 +95,6 @@ public class Game extends JPanel implements ActionListener {
 		});
 		enemySpawnTimer.start();
 
-		add(scorecounter);
 		setFocusable(true);
 		addKeyListener(new KeypressHandler());
 	}
@@ -131,16 +135,15 @@ public class Game extends JPanel implements ActionListener {
 			}
 		}
 		
-		scorecounter.setLocation(550, 10);
-		scorecounter.setSize(100, 50);
-		scorecounter.setText("Score: " + score);
+		scoreCounter.setText("Score: " + score);
 
 		// The game is won when sufficient points have been earned.
 		if (score >= POINTS_TO_WIN) {
 			enemySpawnTimer.stop();
 			gameTimer.stop();
 			enemyTimer.stop();
-			System.out.println("you win");
+			scoreCounter.setText("You are Winner!");
+//			System.out.println("you win");
 		}
 
 		repaint();
@@ -152,7 +155,7 @@ public class Game extends JPanel implements ActionListener {
 
 		g.drawImage(bulletImage, bulletX, bulletY, null);
 		
-		scorecounter.paintComponents(g);
+		scoreCounter.paintComponents(g);
 
 		ship.paintComponent(g);
 
