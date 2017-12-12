@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -38,6 +39,8 @@ public class Game extends JPanel implements ActionListener {
 
 	private Ship ship;
 	private List<Enemy> enemies;
+	
+	JLabel scorecounter = new JLabel("Score: 0");
 
 	public Game() {
 		ImageIcon ii = new ImageIcon("bullet.png");
@@ -87,6 +90,7 @@ public class Game extends JPanel implements ActionListener {
 		});
 		enemySpawnTimer.start();
 
+		add(scorecounter);
 		setFocusable(true);
 		addKeyListener(new KeypressHandler());
 	}
@@ -126,6 +130,10 @@ public class Game extends JPanel implements ActionListener {
 				System.out.println("you lose");
 			}
 		}
+		
+		scorecounter.setLocation(550, 10);
+		scorecounter.setSize(100, 50);
+		scorecounter.setText("Score: " + score);
 
 		// The game is won when sufficient points have been earned.
 		if (score >= POINTS_TO_WIN) {
@@ -143,6 +151,8 @@ public class Game extends JPanel implements ActionListener {
 		super.paintComponent(g);
 
 		g.drawImage(bulletImage, bulletX, bulletY, null);
+		
+		scorecounter.paintComponents(g);
 
 		ship.paintComponent(g);
 
