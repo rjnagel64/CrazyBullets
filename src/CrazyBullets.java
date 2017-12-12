@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class CrazyBullets extends JFrame {
+	
+	// the link to the presentation
+	// https://prezi.com/view/DWOLM9oHAUqSu9LeiFLJ/
 
 	public static final int SCREEN_WIDTH = 640;
 	public static final int SCREEN_HEIGHT = 480;
